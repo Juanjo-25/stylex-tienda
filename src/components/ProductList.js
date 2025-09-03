@@ -57,40 +57,45 @@ export default function ProductList() {
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
-              <div 
-                key={product.id} 
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
-              >
-                <div className="relative">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-64 object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 right-4 bg-black text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    ${product.price.toLocaleString()}
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">
-                    {product.name}
-                  </h2>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {product.description}
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-2xl font-bold text-blue-600">
+              <div key={product.id} className="relative">
+                <Link 
+                  to={`/product/${product.id}`}
+                  className="block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+                >
+                  <div className="relative">
+                    <img 
+                      src={product.image} 
+                      alt={product.name} 
+                      className="w-full h-64 object-cover hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 right-4 bg-black text-white px-3 py-1 rounded-full text-sm font-semibold">
                       ${product.price.toLocaleString()}
-                    </span>
-                    <Link 
-                      to={`/product/${product.id}`} 
-                      className="bg-black text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
-                    >
-                      Ver Producto
-                    </Link>
+                    </div>
                   </div>
-                </div>
+                  
+                  <div className="p-6">
+                    <h2 className="text-xl font-bold text-gray-900 mb-2">
+                      {product.name}
+                    </h2>
+                    <p className="text-gray-600 mb-4 line-clamp-2">
+                      {product.description}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-2xl font-bold text-blue-600">
+                        ${product.price.toLocaleString()}
+                      </span>
+                      <Link 
+                        to={`/product/${product.id}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                        className="bg-black text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 relative z-10"
+                      >
+                        Ver Producto
+                      </Link>
+                    </div>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
